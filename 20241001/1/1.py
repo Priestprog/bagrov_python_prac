@@ -12,4 +12,5 @@ def Pareto(*list_of_pairs):
     return tuple(list_of_pareto)
 
 
-print(Pareto((1,1),(2,45),(0,1),(56,2)))
+import sys
+exec(sys.stdin.read())
