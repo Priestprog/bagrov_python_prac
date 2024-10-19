@@ -1,0 +1,6 @@
+: tan x tan(x)
+tan 45
+:decorate s "_-_<{}>_-_".format(s)
+decorate "ЖЖЖ"
+tan 30
+quit "{}, {}"
