@@ -1,1 +1,10 @@
-print(*fib(0, 10))
+a, b, c, d = Omnibus(), Omnibus(), Omnibus(), Omnibus()
+del a.random
+a.i = a.j = a.k = a.l = True
+b.j = b.k = b.l = b.n = False
+c.k = c.l = c.n = c.m = hex
+d.l = d.n = d.m = d.h = hex
+
+print(a.i, a.j, a.k, a.l, b.j, b.k, b.l, b.n, c.k, c.l, c.n, c.m, d.l, d.n, d.m, d.h)
+del a.k, b.n, c.m, d.h, d.a, d.l
+print(a.i, a.j, a.k, a.l, b.j, b.k, b.l, b.n, c.k, c.l, c.n, c.m, d.l, d.n, d.m, d.h)

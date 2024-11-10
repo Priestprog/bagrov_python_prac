@@ -1,1 +1,8 @@
-print(*list(slide(range(7), 5)))
+a = Triangle((0, 0), (1, 0), (0, 1))
+b = Triangle((0, 0), (2, 0), (0, 2))
+c = Triangle((0, 0), (3, 0), (0, 3))
+
+print(*(f"{n}({bool(x)}):{round(abs(x), 3)}" for n, x in zip("abc", (a, b, c))))
+print(f"{a < b=}, {b < c=}, {a < c=}")
+print(f"{a in b=}, {b in c=}, {a in c=}")
+print(f"{a & b=}, {b & c=}, {a & a=}")
