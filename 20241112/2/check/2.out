@@ -1,0 +1,4 @@
+a(True):0.5 b(True):2.0 c(True):4.5
+a < b=True, b < c=True, a < c=True
+a in b=True, b in c=True, a in c=True
+a & b=True, b & c=True, a & a=True
