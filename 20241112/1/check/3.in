@@ -1,8 +1,4 @@
-a, b = Omnibus(), Omnibus()
-del a.random, b.ran
-a.i = a.j = True
-b.j = b.k = False
-
-print(a.i, a.j, b.j, b.k)
-del a.k, b.n, b.j
-print(a.i, a.j, b.j, b.k)
+a = DivStr("ILovePython")
+print(* a // 7)
+print(a % 7)
+print(* a[2:6] // 2)

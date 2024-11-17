@@ -1,29 +1,16 @@
-class Omnibus:
-    attrs_count = {}
-
-    def __init__(self):
-        self.local_attrs = set()
-
-    def __setattr__(self, name, value):
-        if name == 'local_attrs':
-            super().__setattr__(name, value)
-            return
-        if name not in self.__class__.attrs_count:
-            self.__class__.attrs_count[name] = 1
-        else:
-            self.__class__.attrs_count[name] += 1
-        self.local_attrs.add(name)
-
-    def __getattr__(self, name):
-        if name in self.__class__.attrs_count:
-            return self.__class__.attrs_count[name]
-
-    def __delattr__(self, name):
-        if name in self.local_attrs:
-            self.local_attrs.remove(name)
-            self.__class__.attrs_count[name] -= 1
-            if self.__class__.attrs_count[name] == 0:
-                del self.__class__.attrs_count[name]
+from collections import UserString
+class DivStr(UserString):
+    def __init__(self, s=""):
+        super().__init__(s)
+    def __floordiv__(self, n):
+        if not self.data:
+            return iter([])
+        part_size = len(self.data) // n
+        return iter([self.data[i * part_size: (i + 1) * part_size] for i in range(n)])
+    def __mod__(self, n):
+        if not self.data:
+            return DivStr("")
+        return DivStr(self.data[n * (len(self.data) // n):])
 
 import sys
 exec(sys.stdin.read())
