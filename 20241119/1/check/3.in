@@ -1,8 +1,16 @@
-a, b = Omnibus(), Omnibus()
-del a.random, b.ran
-a.i = a.j = True
-b.j = b.k = False
+@objcount
+class A:
+    def __init__(self, s):
+        self.l = len(s)
+        self.s = s
+    def __del__(self):
+        del self.s, self.l
+    def __str__(self):
+        return self.s, self.l
 
-print(a.i, a.j, b.j, b.k)
-del a.k, b.n, b.j
-print(a.i, a.j, b.j, b.k)
+
+
+a, b, c, d, e = A("a"), A("ab"), A("abc"), A("abcd"), A("abcde")
+print(A.counter)
+del a, d, c
+print(A.counter)

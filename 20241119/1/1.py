@@ -1,29 +1,19 @@
-class Omnibus:
-    attrs_count = {}
-
-    def __init__(self):
-        self.local_attrs = set()
-
-    def __setattr__(self, name, value):
-        if name == 'local_attrs':
-            super().__setattr__(name, value)
-            return
-        if name not in self.__class__.attrs_count:
-            self.__class__.attrs_count[name] = 1
-        else:
-            self.__class__.attrs_count[name] += 1
-        self.local_attrs.add(name)
-
-    def __getattr__(self, name):
-        if name in self.__class__.attrs_count:
-            return self.__class__.attrs_count[name]
-
-    def __delattr__(self, name):
-        if name in self.local_attrs:
-            self.local_attrs.remove(name)
-            self.__class__.attrs_count[name] -= 1
-            if self.__class__.attrs_count[name] == 0:
-                del self.__class__.attrs_count[name]
+def objcount(cls):
+    cls.counter = 0
+    original_init = getattr(cls, '__init__', None)
+    original_del = getattr(cls, '__del__', None)
+    def new_init(self, *args, **kwargs):
+        cls.counter += 1
+        if original_init:
+            original_init(self, *args, **kwargs)
+    def new_del(self):
+        cls.counter -= 1
+        if original_del:
+            original_del(self)
+    cls.__init__ = new_init
+    cls.__del__ = new_del
+    return cls
 
 import sys
 exec(sys.stdin.read())
+
