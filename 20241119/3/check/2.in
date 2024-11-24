@@ -1,6 +1,27 @@
-m = Maze(3)
-print(m)
-print(m[0,0 : 1,0],m[0,0 : 2,2],m[1,0 : 1,2])
-m[2,0 : 2,2] = m[1,0 : 1,2] = m[0,0 : 2,0] = "·"
-print(m)
-print(m[0,0 : 0,1],m[0,0 : 2,2],m[1,0 : 1,2])
+wo = Vowel(e=33, o=44, u=55)
+print(wo, wo.full)
+
+try:
+    wo.answer = 99
+except AttributeError as e:
+    print(e)
+
+try:
+    print(wo.w)
+except AttributeError as e:
+    print(e)
+
+
+try:
+    wo.w = 123
+except AttributeError as e:
+    print(e)
+
+try:
+    wo.full = True
+    print(wo.full)
+except AttributeError as e:
+    print(e)
+
+wo.a = wo.i = wo.y = 777
+print(wo, wo.full)

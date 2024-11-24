@@ -1,42 +1,24 @@
-class Maze:
+class Vowel:
+    __slots__ = ('a', 'e', 'i', 'o', 'u', 'y', '_full')
+    answer = 42
 
-    def __init__(self, N):
-        self.N = N
-        self.grid = [["█" for _ in range(2 * N + 1)] for _ in range(2 * N + 1)]
-        for i in range(1, 2 * N, 2):
-            for j in range(1, 2 * N, 2):
-                self.grid[i][j] = "·"
-
-
+    def __init__(self, **kwargs):
+        for key in kwargs:
+            if key not in self.__slots__:
+                raise AttributeError(f"Invalid slot: {key}")
+            setattr(self, key, kwargs[key])
+            self._full = all(hasattr(self, slot) for slot in self.__slots__[:-2])
     def __str__(self):
-        return "\n".join("".join(row) for row in self.grid)
+        fields = sorted((k, getattr(self, k)) for k in self.__slots__[:-2] if hasattr(self, k))
+        return ', '.join(f"{key}: {value}" for key, value in fields)
 
-    def __setitem__(self, key, value):
-        (x0, y0), (x1, y1) = (key[0], key[1].start), (key[1].stop, key[2])
-        if x0 == x1:
-            for j in range(min(y0, y1), max(y0, y1) + 2):
-                self.grid[j + 2][x0 * 2 + 1] = "·"
+    @property
+    def full(self):
+        return all(hasattr(self, slot) for slot in self.__slots__[:-2])
 
-        elif y0 == y1:
-            for i in range(min(x0, x1), max(x0, x1)):
-                self.grid[y0 * 2 + 1][i * 2 + 2] = "·"
-
-    def __getitem__(self, key):
-        (x0, y0), (x1, y1) = (key[0], key[1].start), (key[1].stop, key[2])
-        visited = set()
-        return self.explor(x0 * 2 + 1, y0 * 2 + 1, x1 * 2 + 1, y1 * 2 + 1, visited)
-
-    def explor(self, x, y, target_x, target_y, visited):
-        if (x, y) == (target_x, target_y):
-            return True
-        visited.add((x, y))
-        directions = [(-1, 0), (1, 0), (0, -1), (0, 1)]
-        for dx, dy in directions:
-            nx, ny = x + dx, y + dy
-            if self.grid[ny][nx] == "·" and (nx, ny) not in visited:
-                if self.explor(nx, ny, target_x, target_y, visited):
-                    return True
-        return False
+    @full.setter
+    def full(self, value):
+        pass
 
 import sys
 exec(sys.stdin.read())
