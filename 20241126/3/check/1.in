@@ -1,0 +1,32 @@
+
+# Тест 1
+wo = Vowel(y=22, a=12, i=3)
+print(wo, wo.full)
+
+wo.e = wo.o = wo.u = 100500
+print(wo, wo.full)
+
+# Тест 2: Попытка записи в answer
+try:
+    wo.answer = 43
+except AttributeError as e:
+    print(e)  # Cannot modify read-only attribute 'answer'
+
+# Тест 3: Попытка чтения незаполненного слота
+try:
+    print(wo.z)
+except AttributeError as e:
+    print(e)  # 'Vowel' object has no attribute 'z'
+
+# Тест 4: Попытка записи в недопустимый слот
+try:
+    wo.z = 99
+except AttributeError as e:
+    print(e)  # Invalid slot: z
+
+# Тест 5: Попытка записи в full
+try:
+    wo.full = False
+    print(wo.full)
+except AttributeError as e:
+    print(e)

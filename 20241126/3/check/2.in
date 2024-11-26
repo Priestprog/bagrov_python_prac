@@ -1,0 +1,27 @@
+wo = Vowel(e=33, o=44, u=55)
+print(wo, wo.full)
+
+try:
+    wo.answer = 99
+except AttributeError as e:
+    print(e)
+
+try:
+    print(wo.w)
+except AttributeError as e:
+    print(e)
+
+
+try:
+    wo.w = 123
+except AttributeError as e:
+    print(e)
+
+try:
+    wo.full = True
+    print(wo.full)
+except AttributeError as e:
+    print(e)
+
+wo.a = wo.i = wo.y = 777
+print(wo, wo.full)

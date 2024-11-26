@@ -1,0 +1,30 @@
+wo = Vowel(e=11, i=22, u=55)
+print(wo, wo.full)
+
+# Попытка записи в answer
+try:
+    wo.answer = 1000
+except AttributeError as e:
+    print(e)
+
+# Попытка чтения незаполненного слота
+try:
+    print(wo.z)
+except AttributeError as e:
+    print(e)
+
+# Попытка записи в незаполненный слот
+try:
+    wo.m = 123
+except AttributeError as e:
+    print(e)
+
+# Попытка записи в full
+try:
+    wo.full = True
+    print(wo.full)
+except AttributeError as e:
+    print(e)
+
+wo.a = wo.o = wo.y = 777
+print(wo, wo.full)

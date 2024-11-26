@@ -1,0 +1,11 @@
+class A:
+  num = Num()
+print(A().num)
+a,b,c, d = A(), A(), A(), A()
+c.num = d.num = a.num = b.num = 10
+print(a.num)
+print(c.num + d.num)
+c.num = "asdfghjkl;"
+print(a.num + c.num + d.num)
+d.num = [1,2,3,4,5,6,7,8,9,10]
+print(c.num + d.num + a.num + b.num)

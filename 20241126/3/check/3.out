@@ -1,0 +1,6 @@
+e: 11, i: 22, u: 55 False
+'Vowel' object attribute 'answer' is read-only
+'Vowel' object has no attribute 'z'
+'Vowel' object has no attribute 'm'
+False
+a: 777, e: 11, i: 22, o: 777, u: 55 True
