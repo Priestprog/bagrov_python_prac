@@ -1,16 +1,1 @@
-@objcount
-class A:
-    def __init__(self, s):
-        self.l = len(s)
-        self.s = s
-    def __del__(self):
-        del self.s, self.l
-    def __str__(self):
-        return self.s, self.l
-
-
-
-a, b, c, d, e = A("a"), A("ab"), A("abc"), A("abcd"), A("abcde")
-print(A.counter)
-del a, d, c
-print(A.counter)
+"111111111111888881111111111111111222222222222222444222222222222222333333333333993333333333333333333
