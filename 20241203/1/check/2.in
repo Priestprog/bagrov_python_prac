@@ -1,1 +1,6 @@
-$cCbBaA
+class D(metaclass=dump):
+    def multiply(self, a, b):
+        return a * b
+
+d = D()
+print(d.multiply(3, 4))

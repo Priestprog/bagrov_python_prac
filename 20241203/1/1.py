@@ -1,6 +1,15 @@
+class dump(type):
+    def __new__(cls, name, parents, namespace):
+        for attr_name, attr_value in namespace.items():
+            if callable(attr_value):
+                def wrapper(func):
+                    def wrapped(self, *args, **kwargs):
+                        print(f"{func.__name__}: {args}, {kwargs}")
+                        return func(self, *args, **kwargs)
+                    return wrapped
+
+                namespace[attr_name] = wrapper(attr_value)
+        return super().__new__(cls, name, parents, namespace)
+
 import sys
-data = sys.stdin.buffer.read()
-N = data[0]
-tail = data[1:]
-L = len(tail)
-sys.stdout.buffer.write(bytearray([N]) + b"".join( sorted([tail[round(i * L / N):round((i + 1) * L / N)] for i in range(N)])))
+exec(sys.stdin.read())

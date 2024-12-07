@@ -1,3 +1,5 @@
-ß äóìàë, âûõîäíûå ïîéäóò ìíå íà ïîëüçó....... 
-Ïðàê ÿ äåëàë â ìåòðî
-
+  store 10 x
+  store 5 y
+  loop: sub x y x
+        ifge x y loop
+        out x
