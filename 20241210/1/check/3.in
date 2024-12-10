@@ -1,0 +1,6 @@
+class E(metaclass=dump):
+    def greet(self):
+        return "Hello!"
+
+e = E()
+print(e.greet())
