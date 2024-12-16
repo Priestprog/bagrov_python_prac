@@ -1,5 +1,16 @@
-  store 10 x
-  store 5 y
-  loop: sub x y x
-        ifge x y loop
-        out x
+import asyncio
+
+async def main(A):
+    tasks, B = await mtasks(A)
+    print(len(tasks))
+    random.shuffle(tasks)
+    await asyncio.gather(*tasks)
+    return B
+
+
+random.seed(123)
+A = random.choices(range(100), k=10)
+B = asyncio.run(main(A))
+print(*A)
+print(*B)
+print(B == sorted(A))

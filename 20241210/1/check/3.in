@@ -1,6 +1,1 @@
-class E(metaclass=dump):
-    def greet(self):
-        return "Hello!"
-
-e = E()
-print(e.greet())
+1,2,3,4

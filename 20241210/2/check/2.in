@@ -1,4 +1,16 @@
-  store 100 a
-  store 50 b
-  ifeq a b undefined_label
-  out a
+import asyncio
+
+async def main(A):
+    tasks, B = await mtasks(A)
+    print(len(tasks))
+    random.shuffle(tasks)
+    await asyncio.gather(*tasks)
+    return B
+
+
+random.seed(42)
+A = random.choices(range(255), k=10)
+B = asyncio.run(main(A))
+print(*A)
+print(*B)
+print(B == sorted(A))
